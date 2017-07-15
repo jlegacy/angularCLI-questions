@@ -13,8 +13,8 @@ import { PreventUnsavedChangesGuard } from './shared/preventUnsavedChangesGuard.
 
 import { UpSertQuestionComponent } from './questions/upsertQuestion.component';
 import { ReviewTestComponent } from './test/reviewTest.component';
-import { TakeTestComponent } from './test/TakeTest.component';
-import { ShowTestResultsComponent } from './test/ShowTestResults.component';
+import { TakeTestComponent } from './test/takeTest.component';
+import { ShowTestResultsComponent } from './test/showTestResults.component';
 import { SpinnerComponent } from './shared/spinner.component';
 
 import { ErrorComponent } from './error/error.component';

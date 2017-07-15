@@ -26,7 +26,7 @@ import * as _ from 'underscore';
     ],
     templateUrl: 'takeTest.html'
 })
-export class TakeTestComponent implements OnInit {
+export class TakeTestComponent implements OnInit { 
     signupForm: FormGroup;
     canRoute;
     questions: ITest[];
