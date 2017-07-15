@@ -3,7 +3,12 @@ var express = require('express'),
     path = require('path'),
     fs = require('fs');
 var app = express();
-var staticRoot = __dirname + '/dist';
+var staticRoot = __dirname + '/';
+
+if (process.env.production) {
+    staticRoot = __dirname + '/dist';
+}
+
 var config = require('config.json');
 app.set('port', (process.env.PORT || 3000));
 app.use(express.static(staticRoot));
