@@ -1,0 +1,21 @@
+import { CanDeactivate } from '@angular/router';
+import { FormGroup }     from '@angular/forms';
+
+export interface FormComponent {
+    signupForm: FormGroup;
+}
+
+export class PreventUnsavedChangesGuard implements CanDeactivate<FormComponent> {
+    canDeactivate(component: FormComponent) {
+        if (component.signupForm.dirty)
+        {
+            if (component["canRoute"] === false)
+            {
+                return confirm('You have unsaved changes. Are you sure you want to navigate away?');
+            }
+         
+            
+        }
+        return true;
+    } 
+}

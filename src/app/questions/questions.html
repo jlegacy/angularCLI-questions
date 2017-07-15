@@ -1,0 +1,78 @@
+<div class="col-md-10">
+    <h1>Questions - {{filter}}</h1>
+</div>
+
+<div class="col-md-12">
+    <spinner [visible]="postLoading"></spinner>
+</div>
+
+<div class="col-md-10">
+
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group" role="group" aria-label="First group">
+            <button (click)="addQuestion()" class="btn btn-success">Add Question</button>
+        </div>
+        <div class="btn-group" role="group" aria-label="Second group">
+            <button (click)="myModal.open()" class="btn btn-warning">Generate New Test</button>
+        </div>
+
+        <div class="btn-group" role="group" aria-label="Third group">
+            <questionFilter (filterChange)="myFilterChange($event)"></questionFilter>
+        </div>
+
+        <div style="padding-left:5px" class="input-group col-md-3">
+<input type="text" [(ngModel)]="searchInput" class="form-control" placeholder="Search" aria-describedby="basic-addon1">
+<div (click)="searchQuestions()" class="input-group-addon">
+    <span class="glyphicon glyphicon-search "></span>
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+<div style="margin-top:5px" class="col-md-10">
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Question</th>
+        <th>On Test</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+
+    <tr *ngFor="let question of questionsList">
+        <td>{{question.question}}</td>
+        <td class="col-sm-1">
+            <switch [status]='question.ontest' (click)="toggleOnTest(question._id)" [onText]="onText" [offText]="offText" [onColor]="onColor"
+                [offColor]="offColor" [size]="size"></switch>
+        </td>
+        <td class="col-sm-1">
+
+            <span (click)="editQuestion(question._id)" class="glyphicon glyphicon-edit"></span>
+
+        </td>
+        <td class="col-sm-1"> <span (click)="deleteQuestion(question._id)" class="glyphicon glyphicon-remove"></span></td>
+
+    </tr>
+
+</table>
+</div>
+
+<form [formGroup]="generateTestForm" (ngSubmit)="processModal(myModal)">
+    <modal #myModal>
+        <modal-header>
+            <h1>Enter Number of Questions to Place on Test</h1>
+        </modal-header>
+        <modal-content>
+            <input formControlName="testInput" [(ngModel)]="testInput" />
+            <control-messages [control]="generateTestForm.controls.testInput"></control-messages>
+        </modal-content>
+        <modal-footer>
+            <button class="btn btn-primary" (click)="myModal.close()">close</button>
+            <button class="btn btn-success" [disabled]=!generateTestForm.valid type="submit">generate</button>
+        </modal-footer>
+    </modal>
+
+</form>

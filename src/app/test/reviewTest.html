@@ -1,0 +1,39 @@
+<div class="col-md-10">
+    <h1>Preview Tests</h1>
+</div>
+
+<div class="col-md-12">
+    <spinner [visible]="postLoading"></spinner>
+</div>
+
+
+<div class="col-md-10">
+    <h1>{{header}}</h1>
+    <div *ngFor="let question of questionsList; let i=index">
+
+        <div class="col-md-12 well">
+
+            <fieldset>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">{{i + 1}} - {{question.question}}</label>
+                </div>
+
+                <div>
+                    <div *ngFor="let answers of question.answers; let z=index">
+                        <label [hidden]="answers.correct === 'false'">*</label>
+                        <label [hidden]="answers.correct === 'true'">&nbsp;</label>
+                        <label class="{{answers.correct === 'true' ? 'correct' : 'incorrect'}}">{{answers.answer}} </label>
+                    </div>
+                </div>
+
+                <div style="margin-top:10px">
+
+                </div>
+                <div style="margin-top:10px">
+
+                </div>
+            </fieldset>
+
+        </div>
+    </div>
+</div>

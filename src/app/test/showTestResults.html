@@ -1,0 +1,52 @@
+<div class="col-md-10">
+    <h1>Test Results</h1>
+</div>
+
+<div class="col-md-12">
+    <spinner [visible]="postLoading"></spinner>
+</div>
+
+<div class="col-md-10">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Email</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let result of resultsList; let i=index">
+
+            <tr>
+                <td> {{result.lastName}} </td>
+                <td> {{result.firstName}} </td>
+                <td> {{result.email}} </td>
+                <td> {{grade[result._id]}} </td>
+                <td> {{date[result._id]}} </td>
+                <td><label (click)="expandDetails(result._id)">Details</label></td>
+            </tr>
+            <tr class="{{showDetails[result._id] === 'false' ? 'hide' : ''}}">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+
+                    <tbody *ngFor="let question of result.questions let x=index">
+                        <tr>
+                            <td> {{question.question}} </td>
+                            <td style="padding-left:10px;" class="{{question.correct === 'true' ? 'correct' : 'incorrect'}}"> {{question.answer}} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+</div>

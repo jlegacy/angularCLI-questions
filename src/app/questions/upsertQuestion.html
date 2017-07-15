@@ -1,0 +1,53 @@
+<div class="col-md-10">
+    <h1>{{header}}</h1>
+    <div class="col-md-12 well">
+        <form [formGroup]="signupForm" (ngSubmit)="submitQuestion()">
+            <fieldset>
+                <div class="form-group">
+                    <label for="formGroupExampleInput">Question</label>
+                    <input formControlName="question" [(ngModel)]="question.question" type="text" class="form-control" id="formGroupExampleInput">
+                    <div *ngIf="signupForm.controls.question.touched && !signupForm.controls.question.valid" class="alert-danger">
+                        Question is Required</div>
+                </div>
+                <div>
+                    <label for="formGroupExampleInput">On Test</label>
+                </div>
+                <div>
+                    <switch (click)="switchOnTest()" [status]="question.ontest ? question.ontest : 'false'" [onText]="onText" [offText]="offText"
+                        [onColor]="onColor" [offColor]="offColor" [size]="size"></switch>
+                </div>
+                <div>
+                    <label for="formGroupExampleInput">Responses</label>
+                </div>
+                <button type="button" (click)="addBlankAnswer()" class="btn btn-success">Add Answer</button>
+
+                <div style="margin-top:10px" formArrayName="answers">
+                    <div *ngFor="let answer of signupForm.controls.answers.controls; let i=index">
+
+                        <div [formGroupName]="i">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <input type="radio" value="true" (click)="setRadios(i)" formControlName="correct" name="correct">
+                                </div>
+                                <input class="form-control" formControlName="answer">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-remove" *ngIf="signupForm.controls.answers.controls.length > 1" (click)="deleteAnswer(i)"></span>
+                                </div>
+
+                            </div>
+                            <small [hidden]="signupForm.controls.answers.controls[i].controls.answer.valid" class="text-danger">
+                                    Answer is required
+                        </small>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top:10px">
+                    <button type="submit" [disabled]=!signupForm.valid class="btn btn-primary">Submit</button>
+                    <small [hidden]="selectedAnswer" class="text-danger">
+                                   Must Select An Answer
+                        </small>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
