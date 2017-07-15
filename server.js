@@ -5,7 +5,7 @@ var express = require('express'),
 var app = express();
 var staticRoot = __dirname + '/dist';
 var config = require('config.json');
-app.set('port', (process.env.PORT || 8080));
+app.set('port', (process.env.PORT || 3000));
 app.use(express.static(staticRoot));
 app.use('/questions', require('./src/app/routes/questions'));
 
