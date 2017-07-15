@@ -212,10 +212,10 @@ export class QuestionsComponent implements OnInit {
         var x = window.confirm('Do you really want to delete?');
         if (x === true) {
             this.postLoading = true;
-            var questionDelete = this._httpService.delete('/questions/' + id);
-            Observable
-                .forkJoin(questionDelete)
-                .subscribe(z => this.refreshData(), error => console.error(error));
+            this._httpService.delete('/questions/' + id)
+                .subscribe(z => {
+                    this.refreshData();
+                 },  error => this.router.navigate(['Error']))
         }
     }
 

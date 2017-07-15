@@ -124,8 +124,8 @@ router.get('/:_id', function (req, res, next) {
 
 router.delete('/:_id', function (req, res, next) {
     deleteQuestion(req.params._id)
-        .then(function (result) {
-            if (result.ok === 1) {
+        .then(function (result) {            
+            if (result.result.ok === 1) {
                 res.send({ msg: 'Deleted' });
             } else {
                 res.sendStatus(404);
