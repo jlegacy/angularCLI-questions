@@ -1,5 +1,5 @@
 ﻿{
-	"connectionString": "mongodb://jlegacy007:jlegacy007@ds149268.mlab.com:49268/heroku_44j7h9br",
+	"connectionString": "mongodb://jlegacy007:jlegacy007@ds161162.mlab.com:61162/heroku_kcz8fdc6",
     "apiUrl":  "https://tranquil-hollows-55605.herokuapp.com/api",
 	"homeUrl":  "https://tranquil-hollows-55605.herokuapp.com/",
 	"apiUrlx":  "http://localhost:5000/api",
